@@ -1,6 +1,6 @@
 {
   "name": "@deland-labs/ic_ledger_client",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "",
   "main": "index.js",
   "types": "index.d.ts",

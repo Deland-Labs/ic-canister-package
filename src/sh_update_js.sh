@@ -7,11 +7,18 @@ if [ -z "$CANISTER" ]; then
   exit 1
 fi
 
-cd $CANISTER/client
+dir=$(cd -P -- "$(dirname -- "$0")" && pwd -P)
 
+cd "$dir/$CANISTER/client"
 npx ic-didc bind index.did --target ts > index.d.ts
 npx ic-didc bind index.did --target js > index.ts
 npx tsc index.ts
+
+cd "$dir/$CANISTER/server"
+npx ic-didc bind index.did --target ts > index.d.ts
+npx ic-didc bind index.did --target js > index.ts
+npx tsc index.ts
+
 echo "update $CANISTER done"
 
-cd "$(dirname "$0")"
+cd $dir

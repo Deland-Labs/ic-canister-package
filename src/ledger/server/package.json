@@ -1,12 +1,20 @@
 {
   "name": "@deland-labs/ic_ledger_server",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "",
   "types": "index.d.ts",
   "main": "index.js",
   "keywords": [
     "ic"
   ],
-  "dependencies": {},
-  "devDependencies": {}
+  "scripts": {
+    "build": "npx tsc index.ts"
+  },
+  "dependencies": {
+    "@dfinity/agent": "^0.11.0",
+    "@dfinity/authentication": "^0.11.0",
+    "@dfinity/candid": "^0.11.0",
+    "@dfinity/identity": "^0.11.0",
+    "@dfinity/principal": "^0.11.0"
+  }
 }

@@ -15,12 +15,14 @@ if [ -z "$VERSION" ]; then
   exit 1
 fi
 
-cd "$(dirname "$0")/$CANISTER/client"
+dir=$(cd -P -- "$(dirname -- "$0")" && pwd -P)
+
+cd "$dir/$CANISTER/client"
 yarn publish --frozen-lockfile --non-interactive --no-git-tag-version --no-commit-hooks --new-version $VERSION
 
-cd "$(dirname "$0")/$CANISTER/server"
+cd "$dir/$CANISTER/server"
 yarn publish --frozen-lockfile --non-interactive --no-git-tag-version --no-commit-hooks --new-version $VERSION
 
 echo "publish done"
 
-cd "$(dirname "$0")"
+cd $dir
