@@ -10,14 +10,14 @@ fi
 dir=$(cd -P -- "$(dirname -- "$0")" && pwd -P)
 
 cd "$dir/$CANISTER/client"
-npx ic-didc bind index.did --target ts > index.d.ts
-npx ic-didc bind index.did --target js > index.ts
-npx tsc index.ts
+npx ic-didc bind index.did --target ts > did.ts
+npx ic-didc bind index.did --target js > idl.ts
+npx tsc
 
 cd "$dir/$CANISTER/server"
-npx ic-didc bind index.did --target ts > index.d.ts
-npx ic-didc bind index.did --target js > index.ts
-npx tsc index.ts
+npx ic-didc bind index.did --target ts > did.ts
+npx ic-didc bind index.did --target js > idl.ts
+npx tsc
 
 echo "update $CANISTER done"
 

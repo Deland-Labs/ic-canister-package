@@ -5,6 +5,8 @@ tasks:
       . ~/fix_gitpod_path.sh
     command: |
       . ~/fix_gitpod_path.sh
+      cd src
+      ./sh_setup_dev.sh
       # ./sh_post_container_created.sh
 ports:
   - port: 8000
