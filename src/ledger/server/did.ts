@@ -1,6 +1,4 @@
 import type { Principal } from '@dfinity/principal';
-import type { ActorMethod } from '@dfinity/agent';
-
 export interface AccountBalanceArgs { 'account' : AccountIdentifier }
 export type AccountIdentifier = string;
 export interface ArchiveOptions {
@@ -56,7 +54,7 @@ export type Transfer = {
     }
   };
 export interface _SERVICE {
-  'account_balance_dfx' : ActorMethod<[AccountBalanceArgs], ICPTs>,
-  'notify_dfx' : ActorMethod<[NotifyCanisterArgs], undefined>,
-  'send_dfx' : ActorMethod<[SendArgs], BlockHeight>,
+  'account_balance_dfx' : (arg_0: AccountBalanceArgs) => Promise<ICPTs>,
+  'notify_dfx' : (arg_0: NotifyCanisterArgs) => Promise<undefined>,
+  'send_dfx' : (arg_0: SendArgs) => Promise<BlockHeight>,
 }

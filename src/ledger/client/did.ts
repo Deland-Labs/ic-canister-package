@@ -1,6 +1,4 @@
 import type { Principal } from '@dfinity/principal';
-import type { ActorMethod } from '@dfinity/agent';
-
 export interface AccountBalanceArgs { 'account' : AccountIdentifier }
 export type AccountIdentifier = Array<number>;
 export interface Archive { 'canister_id' : Principal }
@@ -33,7 +31,9 @@ export type QueryArchiveError = {
     }
   } |
   { 'Other' : { 'error_message' : string, 'error_code' : bigint } };
-export type QueryArchiveFn = ActorMethod<[GetBlocksArgs], QueryArchiveResult>;
+export type QueryArchiveFn = (arg_0: GetBlocksArgs) => Promise<
+    QueryArchiveResult
+  >;
 export type QueryArchiveResult = { 'Ok' : BlockRange } |
   { 'Err' : QueryArchiveError };
 export interface QueryBlocksResponse {
@@ -73,12 +73,12 @@ export type TransferFeeArg = {};
 export type TransferResult = { 'Ok' : BlockIndex } |
   { 'Err' : TransferError };
 export interface _SERVICE {
-  'account_balance' : ActorMethod<[AccountBalanceArgs], Tokens>,
-  'archives' : ActorMethod<[], Archives>,
-  'decimals' : ActorMethod<[], { 'decimals' : number }>,
-  'name' : ActorMethod<[], { 'name' : string }>,
-  'query_blocks' : ActorMethod<[GetBlocksArgs], QueryBlocksResponse>,
-  'symbol' : ActorMethod<[], { 'symbol' : string }>,
-  'transfer' : ActorMethod<[TransferArgs], TransferResult>,
-  'transfer_fee' : ActorMethod<[TransferFeeArg], TransferFee>,
+  'account_balance' : (arg_0: AccountBalanceArgs) => Promise<Tokens>,
+  'archives' : () => Promise<Archives>,
+  'decimals' : () => Promise<{ 'decimals' : number }>,
+  'name' : () => Promise<{ 'name' : string }>,
+  'query_blocks' : (arg_0: GetBlocksArgs) => Promise<QueryBlocksResponse>,
+  'symbol' : () => Promise<{ 'symbol' : string }>,
+  'transfer' : (arg_0: TransferArgs) => Promise<TransferResult>,
+  'transfer_fee' : (arg_0: TransferFeeArg) => Promise<TransferFee>,
 }
